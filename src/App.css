@@ -1,0 +1,17 @@
+.table-head {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 10px 0;
+}
+
+.my-btns {
+	min-width: 80px;
+}
+
+.blanklist {
+	font-size: 30px;
+	font-weight: 600;
+	margin-top: 50px;
+	text-align: center;
+}
