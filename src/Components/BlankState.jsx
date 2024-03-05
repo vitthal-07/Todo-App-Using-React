@@ -1,5 +1,7 @@
-import React from "react";
+import React, {  useContext } from "react";
+import { TodoItems } from "../store/todo-items";
 
 export default function BlankState() {
-	return <div className='blanklist'>No Todo's to display</div>;
+	const todoItems = useContext(TodoItems);
+	return (todoItems.length === 0 && <div className='blanklist'>No Todo's to display</div>);
 }

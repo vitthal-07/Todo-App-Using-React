@@ -1,8 +1,10 @@
 // TodoList.jsx
-import React from "react";
+import React, { useContext } from "react";
 import TodoItem from "./TodoItem";
+import { TodoItems } from "../store/todo-items";
 
-export const TodoList = ({ tasks, onDeleteTask }) => {
+export const TodoList = ({ onDeleteTask }) => {
+	const tasks = useContext(TodoItems);
 	return (
 		<div className='container'>
 			{tasks.map((task, index) => (

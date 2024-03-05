@@ -1,21 +1,24 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 
 function TodoApplication({ onAddTask }) {
-	const [task, setTask] = useState("");
-	const [dueDate, setDueDate] = useState("");
+	// const [task, setTask] = useState("");
+	// const [dueDate, setDueDate] = useState("");
+	const task = useRef("");
+	const dueDate = useRef("");
+	// const handleTaskChange = (evt) => {
+	// 	setTask(evt.target.value);
+	// };
 
-	const handleTaskChange = (evt) => {
-		setTask(evt.target.value);
-	};
-
-	const handleDueDateChange = (evt) => {
-		setDueDate(evt.target.value);
-	};
+	// const handleDueDateChange = (evt) => {
+	// 	setDueDate(evt.target.value);
+	// };
 
 	const handleAddButtonClick = () => {
-		onAddTask(task, dueDate);
-		setTask("");
-		setDueDate("");
+		const taskValue = task.current.value;
+		const dueDatevalue = dueDate.current.value;
+		task.current.value = "";
+		dueDate.current.value = "";
+		onAddTask(taskValue, dueDatevalue);
 	};
 
 	return (
@@ -24,22 +27,25 @@ function TodoApplication({ onAddTask }) {
 				<div className='col-3'>
 					<input
 						type='text'
-						onChange={handleTaskChange}
+						ref={task}
+						// onChange={handleTaskChange}
 						placeholder='Enter TODO here'
-						value={task}
+						// value={task}
 					/>
 				</div>
 				<div className='col-2'>
 					<input
 						type='date'
-						onChange={handleDueDateChange}
-						value={dueDate}
+						ref={dueDate}
+						// onChange={handleDueDateChange}
+						// value={dueDate}
 					/>
 				</div>
 				<div className='col-1'>
 					<button
 						className='btn btn-success my-btns'
-						onClick={handleAddButtonClick}>
+						onClick={handleAddButtonClick}
+					>
 						Add
 					</button>
 				</div>

@@ -4,9 +4,17 @@ import ApplicationHeader from "./Components/ApplicationHeader";
 import "./App.css";
 import { TodoList } from "./Components/TodoList";
 import BlankState from "./Components/BlankState";
+import { TodoItems } from "./store/todo-items";
 
 function App() {
 	const [tasks, setTasks] = useState([]);
+
+	// const handleAddTask = (task, dueDate) => {
+	// 	if (task !== "" && dueDate !== "") {
+	// 		const newTask = { task, dueDate };
+	// 		setTasks([...tasks, newTask]);
+	// 	}`
+	// };
 
 	const handleAddTask = (task, dueDate) => {
 		if (task !== "" && dueDate !== "") {
@@ -22,10 +30,14 @@ function App() {
 
 	return (
 		<>
-			<ApplicationHeader />
-			<TodoApplication onAddTask={handleAddTask} />
-			{tasks.length === 0 && <BlankState />}
-			<TodoList tasks={tasks} onDeleteTask={handleDeleteTask} />
+			<TodoItems.Provider value={tasks}>
+				<ApplicationHeader
+					value={{ task: "Go to collge", dueDate: "today" }}
+				/>
+				<TodoApplication onAddTask={handleAddTask} />
+				<BlankState />
+				<TodoList onDeleteTask={handleDeleteTask} />
+			</TodoItems.Provider>
 		</>
 	);
 }
