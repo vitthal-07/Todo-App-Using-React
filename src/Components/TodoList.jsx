@@ -4,7 +4,7 @@ import TodoItem from "./TodoItem";
 import { TodoItems } from "../store/todo-items";
 
 export const TodoList = ({ onDeleteTask }) => {
-	const tasks = useContext(TodoItems);
+	const { tasks } = useContext(TodoItems);
 	return (
 		<div className='container'>
 			{tasks.map((task, index) => (

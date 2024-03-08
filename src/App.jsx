@@ -16,27 +16,25 @@ function App() {
 	// 	}`
 	// };
 
-	const handleAddTask = (task, dueDate) => {
+	const addNewItem = (task, dueDate) => {
 		if (task !== "" && dueDate !== "") {
 			const newTask = { task, dueDate };
 			setTasks([...tasks, newTask]);
 		}
 	};
 
-	const handleDeleteTask = (index) => {
+	const deleteItem = (index) => {
 		const updatedTasks = tasks.filter((_, i) => i !== index);
 		setTasks(updatedTasks);
 	};
 
 	return (
 		<>
-			<TodoItems.Provider value={tasks}>
-				<ApplicationHeader
-					value={{ task: "Go to collge", dueDate: "today" }}
-				/>
-				<TodoApplication onAddTask={handleAddTask} />
+			<TodoItems.Provider value={{ tasks, addNewItem, deleteItem }}>
+				<ApplicationHeader />
+				<TodoApplication />
 				<BlankState />
-				<TodoList onDeleteTask={handleDeleteTask} />
+				<TodoList />
 			</TodoItems.Provider>
 		</>
 	);

@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
+import { TodoItems } from "../store/todo-items";
 
 function TodoApplication({ onAddTask }) {
 	// const [task, setTask] = useState("");
@@ -12,13 +13,13 @@ function TodoApplication({ onAddTask }) {
 	// const handleDueDateChange = (evt) => {
 	// 	setDueDate(evt.target.value);
 	// };
-
+	const { addNewItem } = useContext(TodoItems);
 	const handleAddButtonClick = () => {
 		const taskValue = task.current.value;
 		const dueDatevalue = dueDate.current.value;
 		task.current.value = "";
 		dueDate.current.value = "";
-		onAddTask(taskValue, dueDatevalue);
+		addNewItem(taskValue, dueDatevalue);
 	};
 
 	return (

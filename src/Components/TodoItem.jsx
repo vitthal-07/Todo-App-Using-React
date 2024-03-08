@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TodoItems } from "../store/todo-items";
 
-export default function TodoItem({ taskName, dueDate, onDeleteTask, index }) {
+export default function TodoItem({ taskName, dueDate, index }) {
+	const { deleteItem } = useContext(TodoItems);
 	return (
 		<div className='row table-head'>
 			<div className='col-3'>{taskName}</div>
@@ -8,8 +10,9 @@ export default function TodoItem({ taskName, dueDate, onDeleteTask, index }) {
 			<div className='col-1'>
 				<button
 					type='button'
-					onClick={() => onDeleteTask(index)}
-					className='btn btn-danger my-btns'>
+					onClick={() => deleteItem(index)}
+					className='btn btn-danger my-btns'
+				>
 					Delete
 				</button>
 			</div>
